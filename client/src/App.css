@@ -1,0 +1,156 @@
+.App {
+  text-align: center;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background: rgb(19, 20, 20);
+  color: white;
+}
+
+footer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 7vh;
+  background: rgb(19, 20, 20);
+  color: white;
+}
+
+.twomblyhome {
+  height: 350px;
+  width: 435px;
+}
+
+.twombcrop {
+  height: 123px;
+  width: 494px;
+}
+
+.nav-links{
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.signature4 {
+  height: 39px;
+  width: 120px;
+  align-items: left;
+}
+
+.poem-form {
+  margin-bottom: 32px;
+}
+
+.poem-input {
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #530000;
+  outline: none;
+  width: 320px;
+  background: transparent;
+  color: rgb(0, 0, 0);
+}
+
+.user-input {
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #530000;
+  outline: none;
+  width: 160px;
+  background: transparent;
+  color: rgb(0, 0, 0);
+}
+
+
+.poem-button {
+  padding: 16px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background:rgb(95, 0, 0) 0%;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.delete-btn {
+  padding: 8px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background:rgb(95, 0, 0) 0%;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.like-btn {
+  padding: 8px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background:rgb(49, 148, 230) 0%;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.poem-input.edit {
+  border: 2px solid #149fff;
+}
+
+.poem-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.poem-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  color: rgb(0, 0, 0);
+  background: rgb(171, 255, 196) 0%;
+
+  padding: 16px;
+  border-radius: 5px;
+  width: 90%;
+}
+
+.poem-row:nth-child(4n + 1) {
+  background: rgb(255, 192, 236) 0%;
+}
+
+.poem-row:nth-child(4n + 2) {
+  background: rgb(165, 237, 255) 0%;
+}
+
+.poem-row:nth-child(4n + 3) {
+  background: rgb(255, 220, 179) 0%;
+}
+
+.logo {
+  height: 75px;
+  width: 75px;
+}
+
+#viewerContainer {
+  background-color: #ffffff;
+  border: 5px solid #ccc9ca;
+  height: 50px;
+  width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer {
+  color: "white";
+}
