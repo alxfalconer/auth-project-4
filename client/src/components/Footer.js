@@ -1,16 +1,16 @@
-// import React from 'react';
+import React from 'react';
 
-// const Footer = () => {
+const Footer = () => {
     
-//   return ( 
-//     <footer className="footer">
-//       <div>
-//       <h4>Brought to you by A. Falconer and...</h4>
-//       <a href="https://www.artic.edu/">
-//       </a>
-//       </div>
-//     </footer>
-//   );
-// }
+  return ( 
+    <footer className="footer">
+      <div>
+      <h4>Brought to you by A. Falconer and...</h4>
+      <a href="https://www.artic.edu/">
+      </a>
+      </div>
+    </footer>
+  );
+}
 
-// export default Footer;
+export default Footer;

@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
+import './App.css';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Home2 from "./components/Home2";
 import Dashboard from "./components/Dashboard"
+import Nav from "./components/Nav"
+import Footer from  './components/Footer';
+import Gallery from  './components/Gallery';
 
 export default class App2 extends Component {
     constructor() {
@@ -26,6 +30,8 @@ export default class App2 extends Component {
         return (
             <div className='app'>
                  <BrowserRouter>
+                 <Nav />
+                 <Route exact path="/gallery" component={Gallery}/>
                  <Switch>
                      <Route 
                      exact 
@@ -47,6 +53,9 @@ export default class App2 extends Component {
                      )}
                      />
                  </Switch>
+                 <br></br>
+                 <br></br>
+                 <Footer />
                  </BrowserRouter>
             </div>
         );
