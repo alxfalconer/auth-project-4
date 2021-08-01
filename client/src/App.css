@@ -2,12 +2,12 @@
   text-align: center;
 }
 
-nav{
+.nav{
   display: flex;
   justify-content: space-around;
   align-items: center;
   min-height: 10vh;
-  background: rgb(19, 20, 20);
+  background: rgb(78, 5, 5);
   color: white;
 }
 
@@ -16,7 +16,7 @@ footer{
   justify-content: space-around;
   align-items: center;
   min-height: 7vh;
-  background: rgb(19, 20, 20);
+  background: rgb(78, 5, 5);
   color: white;
 }
 
@@ -36,6 +36,7 @@ footer{
   justify-content: space-around;
   align-items: center;
   list-style: none;
+  font-style: white
 }
 
 .signature4 {
@@ -154,3 +155,59 @@ footer{
 .footer {
   color: "white";
 }
+
+/* blankblankblank */
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+  background-color: #f7df1e ;
+}
+
+/* .App-link {
+  color: #61dafb;
+} */
+
+
+
+body {
+  background-color: #faf5ce !important;
+}
+
+/* body .bg-dark {
+  background-color: black !important;
+  margin-bottom: 100px;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+} */
+
+.background {
+  background-image: url(https://sothebys-com.brightspotcdn.com/dims4/default/7444d5e/2147483647/strip/true/crop/3000x2119+0+0/resize/1154x815!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fdotcom%2F49%2F0b%2Ffa0e48af458281d2141d7aa1d869%2Fmilan-twombly-1.jpg);
+  background-repeat: no-repeat, repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: 50px;
+  font-weight: bold;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 50px;
+  border-radius: 50px;
+}
+
+.background h1, p {
+  /* background-color: #ffffff73; */
+  padding: 50px
+}
+
+
+/* input.mr-sm-2 {
+  background-color: beige;
+} */

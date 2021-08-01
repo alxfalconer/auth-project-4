@@ -1,23 +1,8 @@
 import React, { useState } from 'react';
-const url = "http://127.0.0.1:3001/"
+const api = "http://127.0.0.1:3001/"
 
-function ReviewForm(props) {
+export function ReviewForm(props) {
   const [input, setInput] = useState("");
-  const [user, setUser] = useState("");
-
-  const userSubmit = () => {
-  const data = { 
-    "name": user
-  };
-  fetch(url + "v1/users", {
-      method: 'POST',
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(data)
-}).then(() => {
-  setUser('');
-  console.log({name: user})
-  });
-};
 
   const handleChange = e => {
     e.preventDefault();
@@ -26,24 +11,19 @@ function ReviewForm(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch(url + "v1/reviews", {
+    fetch(api + "reviews", {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          text: input,
-          user: user,
-          // username_id: usernameId
+          body: input
         })
   }).then(() => {
     props.onSubmit({
-      text: input,
-      user: user,
+      body: input
     });
     setInput('');
-    userSubmit('')
     console.log({
-      text: input,
-      user: user,
+      body: input
     })
   })
 }
@@ -51,11 +31,6 @@ function ReviewForm(props) {
   return (
     <div>
     <form onSubmit={handleSubmit} className='poem-form'>
-      <input className='user-input' placeholder="Enter your username"
-                type="text"
-                required
-                value={user}
-                onChange={(e) => setUser(e.target.value)}/>
           <input
             placeholder='Contribute a line'
             value={input}
@@ -71,4 +46,65 @@ function ReviewForm(props) {
   );
 }
 
-export default ReviewForm;
+// import React, { Component } from 'react';
+// import axios from 'axios';
+
+// export default class ReviewForm2 extends Component {
+//     constructor(props) {
+//         super(props);
+
+//         this.state = {
+//             body: ""
+//         }
+
+//         this.handleSubmit = this.handleSubmit.bind(this);
+//         this.handleChange = this.handleChange.bind(this);
+//     }
+
+//     handleChange(e) {
+//         this.setState({
+//             body: e.target.value
+//         });
+//     }
+
+//     handleSubmit(e) {
+//         axios.post("http://localhost:3001/reviews", {
+//             review: {
+//             body: this.state.body
+//             }
+//         },
+//         // { withCredentials: true}
+//         )
+//         .then(response => {
+//             if (response.data.status === 'created') {
+//             this.props.handleAuth(response.data);
+//             }
+//             console.log("review res", response);
+//         })
+//         .catch(error => {
+//             console.log("review error", error);
+//         });
+//         console.log("form submitted");
+//         e.preventDefault();
+//     }
+
+//     render() {
+//         return (
+//             <div>
+//             <form onSubmit={this.handleSubmit} className='poem-form'>
+//             <input 
+//                     type="poem" 
+//                     name="poem" 
+//                     placeholder='Contribute a line'
+//                     value={this.state.body} 
+//                     onChange={this.handleChange} 
+//                     className='poem-input'
+//                     required 
+//                     />
+//                   <button className='poem-button' type='submit'>Submit</button>
+//             </form>
+//             </div>
+//             );
+        
+//     }
+// }

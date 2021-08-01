@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import ReviewList from './ReviewList'
+import {ReviewList} from './ReviewList'
 
-function Gallery() {
+export function Gallery() {
 
   useEffect(() => {
       fetchArt();
@@ -30,5 +30,3 @@ return (
     </div>
   );
 }
-
-export default Gallery;
