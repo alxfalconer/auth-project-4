@@ -15,11 +15,3 @@ Rails.application.routes.draw do
   root to: "static#home"
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
-
-# Rails.application.routes.draw do
-#   root to: "static#home"
-#   resources :reviews
-#   resources :albums
-#   resources :users
-#   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
-# end

@@ -18,8 +18,8 @@ export function Gallery() {
 return (
     <div>
         <br></br>
-        <h1 style={{fontSize: "20px"}}>Take your time.</h1>
-        <h1 style={{fontSize: "20px"}}>Contribute a line.</h1>
+        <h1 style={{fontSize: "20px"}}>Peruse our gallery.</h1>
+        <h1 style={{fontSize: "20px"}}>Purchase what you please.</h1>
         <br></br>
       {artworks.map(data => (
         <h2 fetchArt={fetchArt} className="artworks" key={data.id}>

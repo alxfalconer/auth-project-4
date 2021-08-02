@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         render json: user, status: :accepted
         else
-            render json: { error: "Wrong email or password"}, status: :unauthorized
+            render json: { error: "Incorrect email ands/or password"}, status: :unauthorized
         end
     end
 
@@ -37,8 +37,14 @@ end
 #         render json: { status: 401 }
 #       end
 #     end
+
+#     def set_current_user
+#         if session[:user_id]
+#           @current_user = User.find(session[:user_id])
+#         end
+#     end
   
-#     def logged_in
+#     def login
 #       if @current_user
 #         render json: {
 #           logged_in: true,

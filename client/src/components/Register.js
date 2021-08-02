@@ -42,7 +42,7 @@ export const Register = ({ setUser, setLoggedin }) => {
   }
   return (
     <div className='login-form'>
-      <h1>Join the Club</h1>
+      <h1>Become a Collector</h1>
       <form onSubmit={handleSignup} className='poem-form'>
           <input
             placeholder='Enter email'

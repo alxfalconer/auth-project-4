@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Home } from './components/Home'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
-import { Welcome } from './components/Welcome'
+import { Collection } from './components/Collection'
 import {Gallery} from './components/Gallery';
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
@@ -12,7 +12,7 @@ const api = "http://localhost:3001/"
 
 function App( props ) {
   const [user, setUser] = useState({})
-  const [loggedin, setLoggedin] = useState(false)
+  const [loggedIn, setLoggedin] = useState(false)
 
   useEffect(() => {  //matches user in system(if one) with session user, passes user info
     findUser()
@@ -42,6 +42,7 @@ function App( props ) {
       .then((res) => {
         setLoggedin(false)
         setUser({})
+        window.alert("Adios!")
         console.log(res)
       })
       .catch((err) => console.log("error =", err))
@@ -51,7 +52,7 @@ function App( props ) {
       <Router>
         <div className="App">
           <div className="container">
-              <Nav loggedin={loggedin} handleLogout={handleLogout} />
+              <Nav loggedIn={loggedIn} handleLogout={handleLogout} />
               <Switch>
                 <Route exact path ="/" component={Home} />
                 <Route exact path ="/login">
@@ -60,8 +61,8 @@ function App( props ) {
                 <Route exact path ="/register">
                   <Register setUser={setUser} setLoggedin={setLoggedin} />  
                 </Route>
-                <Route exact path ="/welcome"> 
-                  {loggedin ? <Welcome user={user} setLoggedin={setLoggedin} /> 
+                <Route exact path ="/collection"> 
+                  {loggedIn ? <Collection user={user} setLoggedin={setLoggedin} /> 
                         : <Login setUser={setUser} setLoggedIn={setLoggedin} /> }
                 </Route> 
                 <Route exact path="/gallery" component={Gallery}/>
