@@ -10,15 +10,33 @@ class UsersController < ApplicationController
         render json: user
     end
 
-    def create #signup
-        user = User.new(user_params)
-        if user.save
-            session[:user_id] = user.id
-            render json: user, status: :created
+    def create
+        user = User.create!(
+          email: params['user']['email'],
+          password: params['user']['password'],
+          password_confirmation: params['user']['password_confirmation']
+        )
+    
+        if user
+          session[:user_id] = user.id
+          render json: {
+            status: :created,
+            user: user
+          }
         else
-            render json: { error: "Not Created"}, status: :bad_request
+          render json: { status: 500 }
         end
-    end
+      end
+
+    # def create #signup
+    #     user = User.new(user_params)
+    #     if user.save
+    #         session[:user_id] = user.id
+    #         render json: user, status: :created
+    #     else
+    #         render json: { error: "Not Created"}, status: :bad_request
+    #     end
+    # end
 
     def me #maintain login
         user = User.find_by(id: session[:user_id])

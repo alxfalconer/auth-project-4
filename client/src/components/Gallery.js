@@ -10,7 +10,7 @@ export function Gallery() {
   const [artworks, setData] = useState([]);
 
   const fetchArt = async () => {
-    const data = await fetch('https://api.artic.edu/api/v1/artworks?limit=1')
+    const data = await fetch('https://api.artic.edu/api/v1/artworks?limit=10')
     const artworks = await data.json()
     setData(artworks.data);  
   }

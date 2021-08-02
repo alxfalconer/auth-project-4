@@ -156,38 +156,14 @@ footer{
   color: "white";
 }
 
-/* blankblankblank */
-
 .App {
+  font-family: Optima, sans-serif;
   text-align: center;
 }
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: black;
-  background-color: #f7df1e ;
-}
-
-/* .App-link {
-  color: #61dafb;
-} */
-
-
 
 body {
   background-color: #faf5ce !important;
 }
-
-/* body .bg-dark {
-  background-color: black !important;
-  margin-bottom: 100px;
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-} */
 
 .background {
   background-image: url(https://sothebys-com.brightspotcdn.com/dims4/default/7444d5e/2147483647/strip/true/crop/3000x2119+0+0/resize/1154x815!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fdotcom%2F49%2F0b%2Ffa0e48af458281d2141d7aa1d869%2Fmilan-twombly-1.jpg);
@@ -207,7 +183,8 @@ body {
   padding: 50px
 }
 
-
-/* input.mr-sm-2 {
-  background-color: beige;
-} */
+.divider{
+  width:15px;
+  height:auto;
+  display:inline-block;
+}

@@ -33,6 +33,7 @@ export const Register = ({ setUser, setLoggedin }) => {
     fetch(api + "signup", signupObj)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setUser(data)
         setLoggedin(true)
         history.push("/") 
@@ -49,6 +50,8 @@ export const Register = ({ setUser, setLoggedin }) => {
             onChange={handleChange}
             name='email'
             className='poem-input'
+            type="email"
+            required
           />
           <br></br>
             <input
@@ -58,6 +61,7 @@ export const Register = ({ setUser, setLoggedin }) => {
             name='password'
             className='poem-input'
             type="password"
+            required
           />
           <br></br>
            <input
@@ -66,6 +70,7 @@ export const Register = ({ setUser, setLoggedin }) => {
             onChange={handleChange}
             name='name'
             className='poem-input'
+            required
           />
           <br></br>
           <br></br>

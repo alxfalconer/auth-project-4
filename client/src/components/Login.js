@@ -34,8 +34,12 @@ export const Login = ({ setUser, setLoggedIn }) => {
           // set the current user to some higher state
           setUser(data)
           setLoggedIn(true)
-          history.push("/profile")
+          history.push("/welcome")
         } 
+        else 
+        window.alert("Stranger danger! We don't recognize that email and/or password. Please try again or click the button below to register.")
+        setEmail("")
+        setPassword("")
       })
       .catch((err) => console.log(err))
   }
@@ -50,6 +54,8 @@ export const Login = ({ setUser, setLoggedIn }) => {
             onChange={handleChange}
             name='email'
             className='poem-input'
+            type="email"
+            required
           />
             <input
             type="password" 

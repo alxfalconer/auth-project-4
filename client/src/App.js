@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Home } from './components/Home'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
-import { Profile } from './components/Profile'
+import { Welcome } from './components/Welcome'
 import {Gallery} from './components/Gallery';
 import { Footer } from './components/Footer'
-import { NavBar } from './components/NavBar'
+import { Nav } from './components/Nav'
 import React, { useState, useEffect } from 'react'
 import './App.css'
 const api = "http://localhost:3001/"
@@ -15,10 +15,10 @@ function App( props ) {
   const [loggedin, setLoggedin] = useState(false)
 
   useEffect(() => {  //matches user in system(if one) with session user, passes user info
-    findMe()
+    findUser()
   }, [])
 
-  const findMe = () => {    
+  const findUser = () => {    
     fetch("/me")
       .then((res) => res.json())
       .then((data) => {
@@ -51,7 +51,7 @@ function App( props ) {
       <Router>
         <div className="App">
           <div className="container">
-              <NavBar loggedin={loggedin} handleLogout={handleLogout} />
+              <Nav loggedin={loggedin} handleLogout={handleLogout} />
               <Switch>
                 <Route exact path ="/" component={Home} />
                 <Route exact path ="/login">
@@ -60,8 +60,8 @@ function App( props ) {
                 <Route exact path ="/register">
                   <Register setUser={setUser} setLoggedin={setLoggedin} />  
                 </Route>
-                <Route exact path ="/profile"> 
-                  {loggedin ? <Profile user={user} setLoggedin={setLoggedin} /> 
+                <Route exact path ="/welcome"> 
+                  {loggedin ? <Welcome user={user} setLoggedin={setLoggedin} /> 
                         : <Login setUser={setUser} setLoggedIn={setLoggedin} /> }
                 </Route> 
                 <Route exact path="/gallery" component={Gallery}/>

@@ -15,15 +15,15 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "albums", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "title"
-    t.string "artist"
-    t.string "genre"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_albums_on_user_id"
-  end
+  # create_table "albums", force: :cascade do |t|
+  #   t.bigint "user_id", null: false
+  #   t.string "title"
+  #   t.string "artist"
+  #   t.string "genre"
+  #   t.datetime "created_at", precision: 6, null: false
+  #   t.datetime "updated_at", precision: 6, null: false
+  #   t.index ["user_id"], name: "index_albums_on_user_id"
+  # end
 
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -37,13 +37,9 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
-    t.string "name"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
   end
-
-  add_foreign_key "albums", "users"
-  add_foreign_key "reviews", "users"
 end
