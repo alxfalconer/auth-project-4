@@ -30,7 +30,7 @@ export const Register = ({ setUser, setLoggedin }) => {
         }),
       }
       // console.log(signupObj)
-    fetch(api + "signup", signupObj)
+    fetch(api + "register", signupObj)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)

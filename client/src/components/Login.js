@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from "react-router-dom"
 const api = "http://localhost:3001/"
 
 export const Login = ({ setUser, setLoggedIn }) => {
@@ -34,7 +33,7 @@ export const Login = ({ setUser, setLoggedIn }) => {
           // set the current user to some higher state
           setUser(data)
           setLoggedIn(true)
-          history.push("/welcome")
+          history.push("/collection")
         } 
         else 
         window.alert("Stranger danger! We don't recognize that email and/or password. Please try again or click the button below to register.")

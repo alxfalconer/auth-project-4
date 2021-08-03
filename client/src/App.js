@@ -3,6 +3,7 @@ import { Home } from './components/Home'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
 import { Collection } from './components/Collection'
+import { Detail } from './components/Detail';
 import {Gallery} from './components/Gallery';
 import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
@@ -64,7 +65,8 @@ function App( props ) {
                 <Route exact path ="/collection"> 
                   {loggedIn ? <Collection user={user} setLoggedin={setLoggedin} /> 
                         : <Login setUser={setUser} setLoggedIn={setLoggedin} /> }
-                </Route> 
+                </Route>
+                <Route exact path="/artworks/:id" component={Detail}/>
                 <Route exact path="/gallery" component={Gallery}/>
                 {/* <Route component={NoMatch} /> */}
               </Switch>

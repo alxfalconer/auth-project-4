@@ -5,7 +5,7 @@ class UsersController < ApplicationController
         render json: users
     end
 
-    def show #profile
+    def show
         user = User.find_by(id: params[:id])
         render json: user
     end
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     #     end
     # end
 
-    def me #maintain login
+    def me
         user = User.find_by(id: session[:user_id])
         if user
           render json: user
@@ -47,10 +47,10 @@ class UsersController < ApplicationController
         end
     end
 
-    def user_reviews
+    def user_artworks
         user = User.find(params[:user_id])
-        reviews = user.reviews
-        render json: reviews, include: :user
+        artworks = user.artworks
+        render json: artworks, include: :user
     end
 
     private
