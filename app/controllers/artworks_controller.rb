@@ -11,10 +11,31 @@ class ArtworksController < ApplicationController
     end
 
     def create
-        @artwork = Artwork.new(artwork_params)
-        @artwork.save
-        render json: @artwork, status: :created
-    end
+        artwork = Artwork.create!(
+          title: params['artwork']['title'],
+          artist_title: params['artwork']['artist_title'],
+          place_of_origin: params['artwork']['place_of_origin'],
+          date_display: params['artwork']['date_display'],
+          medium_display: params['artwork']['medium_display'],
+          image_id: params['artwork']['image_id']
+        )
+    
+        if artwork
+          session[:artwork_id] = artwork.id
+          render json: {
+            status: :created,
+            artwork: artwork
+          }
+        else
+          render json: { status: 500 }
+        end
+      end
+
+    # def create
+    #     @artwork = Artwork.new(artwork_params)
+    #     @artwork.save
+    #     render json: @artwork, status: :created
+    # end
 
     def update
         if @artwork.update(artwork_params)
@@ -33,39 +54,23 @@ class ArtworksController < ApplicationController
         end
     end
 
-    def new
-        user = User.find_by(id: session[:user_id])
-        artwork = user.artworks.new(artworks_params)
-        if artwork.save
-            render json: artwork, status: :created
-        else
-            render json: { error: "Not Created" }, status: :bad_request
-        end 
-    end
+    # def new
+    #     user = User.find_by(id: session[:user_id])
+    #     artwork = user.artworks.new(artworks_params)
+    #     if artwork.save
+    #         render json: artwork, status: :created
+    #     else
+    #         render json: { error: "Not Created" }, status: :bad_request
+    #     end 
+    # end
 
     private 
 
-    def set_artwork
-        @artwork = Artwork.find(params[:id])
-    end
-
-    def creation_params
-        params.permit(:artwork)
-    end
+    # def set_artwork
+    #     @artwork = Artwork.find(params[:id])
+    # end
     
     def artwork_params
-    params.require(:artwork).permit(:user_id, :title, :artist_title, :place_of_origin, :date_display, :medium_display, :image_id)
+        params.require(:artwork).permit(:title, :artist_title, :place_of_origin, :date_display, :medium_display, :image_id)
     end
 end
-
-#     def index 
-#         artworks = Artwork.all 
-#         render json: artworks
-#     end
-
-#     def show 
-#         # byebug
-#         artwork = Artwork.find(params[:id].to_i)
-#         render json: artwork, include: "**" 
-#     end
-# end

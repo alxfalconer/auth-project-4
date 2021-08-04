@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post "/register", to: "users#create"
   post "/login", to: "sessions#login"
   delete "/logout", to: "sessions#destroy"
-  post "/add_artwork", to: "artworks#new"
+  post "/artworks", to: "artworks#create"
   delete "artworks/delete/:artwork_id", to: 'artworks#destroy'
   # resources :sessions, only: [:create]
   # resources :registrations, only: [:create]
