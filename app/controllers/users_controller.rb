@@ -11,11 +11,7 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.create!(
-          email: params['user']['email'],
-          name: params['user']['name'],
-          password: params['user']['password']
-        )
+        user = User.create!(user_params)
     
         if user
           session[:user_id] = user.id
@@ -46,6 +42,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:email, :password, :name)
+        params.permit(:email, :password, :name, :collection)
     end
 end

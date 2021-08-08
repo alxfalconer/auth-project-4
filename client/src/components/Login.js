@@ -5,16 +5,16 @@ const api = "http://localhost:3001/"
 export const Login = ({ setUser, setLoggedIn }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [collection, setCollection] = useState({})
   const history = useHistory()
 
   const handleChange = (e) => {
     if (e.target.name === "email") setEmail(e.target.value)
     if (e.target.name === "password") setPassword(e.target.value)
   }
-
-  const handleLogin = (e) => {
+  
+  const handleSubmit = (e) => {
     e.preventDefault()
-    // Send Login request to our backend
     const loginObj = {
       method: "POST",
       headers: {
@@ -30,10 +30,10 @@ export const Login = ({ setUser, setLoggedIn }) => {
       .then((data) => {
         console.log(data)
         if (!!data.id) {
-          // set the current user to some higher state
           setUser(data)
           setLoggedIn(true)
-          history.push("/collection")
+          setCollection(collection)
+          history.push("/gallery")
         } 
         else 
         window.alert("Stranger danger! We don't recognize that email and/or password. Please try again or click the button below to register.")
@@ -46,7 +46,7 @@ export const Login = ({ setUser, setLoggedIn }) => {
   return (
     <div className='login-form'>
       <h1>So we meet again...</h1>
-          <form onSubmit={handleLogin} className='poem-form'>
+          <form onSubmit={handleSubmit} className='poem-form'>
           <input
             placeholder='Enter email'
             value={email}
@@ -64,7 +64,7 @@ export const Login = ({ setUser, setLoggedIn }) => {
             name='password'
             className='poem-input'
           />
-          <button onClick={handleLogin} className='poem-button'>
+          <button onClick={handleSubmit} className='poem-button'>
             Login
           </button>
     </form>

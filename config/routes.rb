@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   resources :users
   resources :artworks
-  get '/users/:user_id/artworks', to: 'users#user_artworks'
-  get "/me", to: "users#me"
-  post "/register", to: "users#create"
+  resources :collections
   post "/login", to: "sessions#login"
   delete "/logout", to: "sessions#destroy"
+  post "/register", to: "users#create"
+  post 'collections/newcollection', to: 'collections#newcollection'
+  get '/users/:user_id/artworks', to: 'users#user_artworks'
+  get "/me", to: "users#me" 
+  post "/add_collection", to: "collections#create"
   post "/artworks", to: "artworks#create"
   delete "artworks/delete/:artwork_id", to: 'artworks#destroy'
   # resources :sessions, only: [:create]

@@ -7,6 +7,7 @@ export const Register = ({ setUser, setLoggedin }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
+  const [collection, setCollection] = useState({})
   const history = useHistory()
 
   const handleChange = (e) => {
@@ -15,9 +16,21 @@ export const Register = ({ setUser, setLoggedin }) => {
     if (e.target.name === "name") setName(e.target.value)
   }
 
-  const handleSignup = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault()
-    const signupObj = {
+    const createCollection = () => {
+        fetch(api + "collections", {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(collection)
+        }).then((res) => res.json())
+        .then((res) => {
+          console.log(res)
+          setCollection({})
+        })
+      }
+  
+    const newUser = {
       method: "POST",
       headers: {
             "Content-type": "application/json",
@@ -29,21 +42,21 @@ export const Register = ({ setUser, setLoggedin }) => {
             name
         }),
       }
-      // console.log(signupObj)
-    fetch(api + "register", signupObj)
+    fetch(api + "register", newUser)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
         setUser(data)
         setLoggedin(true)
-        history.push("/") 
+        createCollection()
+        history.push("/gallery") 
       })
       .catch((err) => console.log(err))
   }
   return (
     <div className='login-form'>
       <h1>Become a Collector</h1>
-      <form onSubmit={handleSignup} className='poem-form'>
+      <form onSubmit={handleRegister} className='poem-form'>
           <input
             placeholder='Enter email'
             value={email}
@@ -74,7 +87,7 @@ export const Register = ({ setUser, setLoggedin }) => {
           />
           <br></br>
           <br></br>
-          <button onClick={handleSignup} className='poem-button'>
+          <button onClick={handleRegister} className='poem-button'>
             Submit
           </button>
     </form>

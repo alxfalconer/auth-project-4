@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 import { Home } from './components/Home'
 import { Login } from './components/Login'
 import { Register } from './components/Register'
@@ -11,11 +11,12 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 const api = "http://localhost:3001/"
 
-function App( props ) {
+function App() {
   const [user, setUser] = useState({})
   const [loggedIn, setLoggedin] = useState(false)
+  const [collection, setCollection] = useState({})
 
-  useEffect(() => {  //matches user in system(if one) with session user, passes user info
+  useEffect(() => {
     findUser()
   }, [])
 
@@ -54,7 +55,6 @@ function App( props ) {
         <div className="App">
           <div className="container">
               <Nav loggedIn={loggedIn} handleLogout={handleLogout} />
-              <Switch>
                 <Route exact path ="/" component={Home} />
                 <Route exact path ="/login">
                   <Login setUser={setUser} setLoggedIn={setLoggedin} />
@@ -64,12 +64,10 @@ function App( props ) {
                 </Route>
                 <Route exact path ="/collection"> 
                   {loggedIn ? <Collection user={user} setLoggedin={setLoggedin} /> 
-                        : <Login setUser={setUser} setLoggedIn={setLoggedin} /> }
+                        : <Login setUser={setUser} setLoggedIn={setLoggedin} />}
                 </Route>
                 <Route exact path="/artworks/:id" component={Detail}/>
                 <Route exact path="/gallery" component={Gallery}/>
-                {/* <Route component={NoMatch} /> */}
-              </Switch>
               <Footer />
           </div>
       

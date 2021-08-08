@@ -15,19 +15,10 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "albums", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "title"
-    t.string "artist"
-    t.string "genre"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_albums_on_user_id"
-  end
-
   create_table "artworks", force: :cascade do |t|
     t.string "title"
     t.integer "user_id"
+    t.integer "collection_id"
     t.string "artist_title"
     t.string "place_of_origin"
     t.string "date_display"
@@ -37,27 +28,10 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "collection_items", force: :cascade do |t|
-    t.integer "artwork_id"
-    t.integer "collection_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "collections", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.text "body"
-    t.string "user"
-    t.string "album"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
