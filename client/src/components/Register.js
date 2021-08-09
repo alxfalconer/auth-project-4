@@ -7,7 +7,6 @@ export const Register = ({ setUser, setLoggedin }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
-  const [collection, setCollection] = useState({})
   const history = useHistory()
 
   const handleChange = (e) => {
@@ -18,18 +17,7 @@ export const Register = ({ setUser, setLoggedin }) => {
 
   const handleRegister = (e) => {
     e.preventDefault()
-    const createCollection = () => {
-        fetch(api + "collections", {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(collection)
-        }).then((res) => res.json())
-        .then((res) => {
-          console.log(res)
-          setCollection({})
-        })
-      }
-  
+
     const newUser = {
       method: "POST",
       headers: {
@@ -48,8 +36,7 @@ export const Register = ({ setUser, setLoggedin }) => {
         console.log(data)
         setUser(data)
         setLoggedin(true)
-        createCollection()
-        history.push("/gallery") 
+        history.push("/collection") 
       })
       .catch((err) => console.log(err))
   }

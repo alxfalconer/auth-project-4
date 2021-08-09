@@ -1,12 +1,12 @@
 class ArtworksController < ApplicationController
 
     def index
-        @artworks = Artwork.all
-        render json: @artworks, status: :ok
+        artworks = Artwork.all
+        render json: artworks
     end
 
     def show
-        @artwork = Artwork.find_by(id: params[:id])
+        artwork = Artwork.find_by(id: params[:id])
         render json: artwork
     end
 
@@ -31,23 +31,17 @@ class ArtworksController < ApplicationController
         end
       end
 
-    # def create
-    #     @artwork = Artwork.new(artwork_params)
-    #     @artwork.save
-    #     render json: @artwork, status: :created
-    # end
-
     def update
-        if @artwork.update(artwork_params)
-          render json: @artwork
+        if artwork.update(artwork_params)
+          render json: artwork
         else
-          render json: @artwork.errors, status: :unprocessable_entity
+          render json: artwork.errors, status: :unprocessable_entity
         end
     end
 
     def destroy
-        @artwork= Artwork.where(id: params[:id]).first
-        if @artwork.destroy
+        artwork= Artwork.where(id: params[:id]).first
+        if artwork.destroy
             head(:ok)
         else
             head(:unprocessable_entity)
@@ -66,10 +60,6 @@ class ArtworksController < ApplicationController
 
     private 
 
-    # def set_artwork
-    #     @artwork = Artwork.find(params[:id])
-    # end
-    
     def artwork_params
         params.require(:artwork).permit(:title, :artist_title, :place_of_origin, :date_display, :medium_display, :image_id)
     end

@@ -2,13 +2,18 @@ class UsersController < ApplicationController
 
     def index
         users = User.all
-        render json: users
+        render json: users, include: ['collections', 'collections.artworks']
     end
 
     def show
-        user = User.find_by(id: params[:id])
+      user = User.find_by(id: session[:user_id])
+      if user
         render json: user
+      else
+        render json: { error: "Not authorized" }, status: :unauthorized
+      end
     end
+  
 
     def create
         user = User.create!(user_params)
@@ -33,11 +38,11 @@ class UsersController < ApplicationController
         end
     end
 
-    def user_artworks
-        user = User.find(params[:user_id])
-        artworks = user.artworks
-        render json: artworks, include: :user
-    end
+    # def user_artworks
+    #     user = User.find(params[:user_id])
+    #     artworks = user.artworks
+    #     render json: artworks, include: :user
+    # end
 
     private
 

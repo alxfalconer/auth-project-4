@@ -14,13 +14,12 @@ const api = "http://localhost:3001/"
 function App() {
   const [user, setUser] = useState({})
   const [loggedIn, setLoggedin] = useState(false)
-  const [collection, setCollection] = useState({})
 
   useEffect(() => {
-    findUser()
+    currentUser()
   }, [])
 
-  const findUser = () => {    
+  const currentUser = () => {    
     fetch("/me")
       .then((res) => res.json())
       .then((data) => {

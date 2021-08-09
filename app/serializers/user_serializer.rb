@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-    attributes :id, :name, :email, :password_digest, :current_collection
-    has_one :collection
+    attributes :id, :name, :email, :password_digest
+    has_many :collections
     # has_many :artworks, through :collections
   end

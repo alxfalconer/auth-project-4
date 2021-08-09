@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
   create_table "artworks", force: :cascade do |t|
     t.string "title"
     t.integer "user_id"
-    t.integer "collection_id"
     t.string "artist_title"
     t.string "place_of_origin"
     t.string "date_display"
@@ -28,8 +27,16 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "collection_items", force: :cascade do |t|
+    t.integer "artwork_id"
+    t.integer "collection_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "collections", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
+    t.references "user"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
+    t.integer "current_collection"
   end
 
 end

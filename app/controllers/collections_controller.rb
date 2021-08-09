@@ -1,22 +1,24 @@
 class CollectionsController < ApplicationController
 
-    
     def index 
         collections = Collection.all
         render json: collections
-    end 
-
+    end
+    
     def create
+        user_id = User.find_by(id: session[:user_id])
         collection = Collection.create(collection_params)
+    #     collection = u.collections.create(params[:id])
+    #     collection.save
+    #     # user = User.find_by(id: session[:user_id])
+    #     # q = user.collection.create(collection_params)
         render json: collection
     end
 
     def newcollection
         collection = Collection.create(user_id: collection_params[:user_id])
-        artwork = Artwork.create(collection_id: collection.id)
         user = User.find(collection_params[:user_id])
         user.update(current_collection: collection.id)
-        artwork = collection.artworks
         collection.save
     end
 
