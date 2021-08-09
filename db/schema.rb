@@ -27,13 +27,6 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "collection_items", force: :cascade do |t|
-    t.integer "artwork_id"
-    t.integer "collection_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "collections", force: :cascade do |t|
     t.integer "user_id", null: false
     t.references "user"
@@ -48,7 +41,6 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
-    t.integer "current_collection"
   end
 
 end

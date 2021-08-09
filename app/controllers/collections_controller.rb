@@ -4,14 +4,10 @@ class CollectionsController < ApplicationController
         collections = Collection.all
         render json: collections
     end
-    
+
     def create
-        user_id = User.find_by(id: session[:user_id])
-        collection = Collection.create(collection_params)
-    #     collection = u.collections.create(params[:id])
-    #     collection.save
-    #     # user = User.find_by(id: session[:user_id])
-    #     # q = user.collection.create(collection_params)
+        user = User.find_by(id: session[:user_id])
+        collection = user.collections.create(user_id: session[:user_id])
         render json: collection
     end
 
