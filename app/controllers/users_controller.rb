@@ -27,6 +27,8 @@ class UsersController < ApplicationController
         else
           render json: { status: 500 }
         end
+        p session
+        p "*****"
       end
 
     def me
@@ -37,6 +39,12 @@ class UsersController < ApplicationController
           render json: { error: "Not authorized" }, status: :unauthorized
         end
     end
+
+    def user_collections
+      user = User.find(params[:user_id])
+      collections = user.collections
+      render json: collections, include: :user
+  end
 
     # def user_artworks
     #     user = User.find(params[:user_id])

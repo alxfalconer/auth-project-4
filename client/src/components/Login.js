@@ -5,7 +5,7 @@ const api = "http://localhost:3001/"
 export const Login = ({ setUser, setLoggedIn }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [collection, setCollection] = useState({})
+  // const [collection, setCollection] = useState({})
   const history = useHistory()
 
   const handleChange = (e) => {
@@ -32,7 +32,7 @@ export const Login = ({ setUser, setLoggedIn }) => {
         if (!!data.id) {
           setUser(data)
           setLoggedIn(true)
-          setCollection(collection)
+          // setCollection(collection)
           history.push("/gallery")
         } 
         else 
@@ -40,12 +40,13 @@ export const Login = ({ setUser, setLoggedIn }) => {
         setEmail("")
         setPassword("")
       })
-      .catch((err) => console.log(err))
+      // .catch((err) => console.log(err))
   }
 
   return (
     <div className='login-form'>
       <h1>So we meet again...</h1>
+      <h2>Enter your email and password to enter.</h2>
           <form onSubmit={handleSubmit} className='poem-form'>
           <input
             placeholder='Enter email'

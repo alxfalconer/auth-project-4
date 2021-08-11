@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
-export function Gallery() {
+export function Gallery({user}) {
 
   useEffect(() => {
     fetchData();
@@ -21,7 +21,8 @@ export function Gallery() {
   return (
     
     <div>
-      <h1>Our Artworks:</h1>
+      <h1>Welcome back, {user.name}!</h1>
+      <h2>Our Artworks:</h2>
       <h3 id="learnmore">Click the pieces you'd like to learn more about.</h3>
       {artworks.map(data => (
         <h2 className="artworks" key={data.id}><em>

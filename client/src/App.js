@@ -20,7 +20,7 @@ function App() {
   }, [])
 
   const currentUser = () => {    
-    fetch("/me")
+    fetch(api + "me")
       .then((res) => res.json())
       .then((data) => {
         console.log("current user: ", data)
@@ -28,16 +28,15 @@ function App() {
           setUser(data)
           setLoggedin(true)
             }
-          }  
-        )
+          })
       .catch((err) => console.log("error =", err))
-  }
+  };
 
    const handleLogout = (e) => {
     e.preventDefault();
      const delObj = {
        method: "DELETE"
-      }
+      };
       fetch(api + "logout", delObj)
       .then((res) => res.json())
       .then((res) => {
@@ -62,11 +61,14 @@ function App() {
                   <Register setUser={setUser} setLoggedin={setLoggedin} />  
                 </Route>
                 <Route exact path ="/collection"> 
-                  {loggedIn ? <Collection user={user} setLoggedin={setLoggedin} /> 
-                        : <Login setUser={setUser} setLoggedIn={setLoggedin} />}
+                  {loggedIn ? (<Collection user={user} userId={user.id}/> )
+                        : (<Login setUser={setUser} setLoggedIn={setLoggedin} />)}
                 </Route>
                 <Route exact path="/artworks/:id" component={Detail}/>
-                <Route exact path="/gallery" component={Gallery}/>
+                <Route exact path="/gallery">
+                  {loggedIn ? (<Gallery user={user}/>)
+                  : (<Register/>)}
+                  </Route>
               <Footer />
           </div>
       

@@ -10,61 +10,21 @@ class SessionsController < ApplicationController
         end
     end
 
+    # def current_user
+    #     @current_user ||= User.find(session[:id]) if session[:id]
+    # end
+
+    # def logged_in
+    #     if logged_in?
+    #         render json: { status: 201, user: current_user, logged_in: true}
+    #     else
+    #         render json: { status: 400, user: {}, logged_in: false}
+    #     end
+    # end
+
     def destroy
         session.delete :user_id
         render json: { message: "Logged Out"}
     end
 
-    def index
-        session[:session_hello] ||= "World"
-        cookies[:cookies_hello] ||= "World"
-        render json: { session: session, cookies: cookies.to_hash }
-    end
-
 end
-
-
-
-# class SessionsController < ApplicationController
-  
-#     def create
-#       user = User
-#               .find_by(email: params["user"]["email"])
-#               .try(:authenticate, params["user"]["password"])
-  
-#       if user
-#         session[:user_id] = user.id
-#         render json: {
-#           status: :created,
-#           logged_in: true,
-#           user: user
-#         }
-#       else
-#         render json: { status: 401 }
-#       end
-#     end
-
-#     def set_current_user
-#         if session[:user_id]
-#           @current_user = User.find(session[:user_id])
-#         end
-#     end
-  
-#     def login
-#       if @current_user
-#         render json: {
-#           logged_in: true,
-#           user: @current_user
-#         }
-#       else
-#         render json: {
-#           logged_in: false
-#         }
-#       end
-#     end
-  
-#     def logout
-#       reset_session
-#       render json: { status: 200, logged_out: true }
-#     end
-#   end

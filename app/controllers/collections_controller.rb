@@ -1,41 +1,58 @@
 class CollectionsController < ApplicationController
+    before_action :has_session
 
-    def index 
+    def index
         collections = Collection.all
         render json: collections
     end
 
     def create
-        user = User.find_by(id: session[:user_id])
-        collection = user.collections.create(user_id: session[:user_id])
+        collection = Collection.create(collection_params)
         render json: collection
+        # user = User.find_by(id: session[:user_id])
+        # p session
+        # p session[:user_id]
+        # p "*****"
+        # collection = user.collections.create(collection_params)
+        # render json: collection
     end
 
-    def newcollection
-        collection = Collection.create(user_id: collection_params[:user_id])
-        user = User.find(collection_params[:user_id])
-        user.update(current_collection: collection.id)
-        collection.save
+    def new
+        user = User.find_by(id: session[:user_id])
+        p session
+        p session[:user_id]
+        p "*****"
+        collection = user.collections.new(collection_params)
+        if collection.save
+            render json: collection, status: :created
+        else
+            render json: { error: "Not Created" }, status: :bad_request
+        end 
     end
 
     def show 
-        collection = Collection.find(params[:id])
+        collection = Collection.find(id: params[:id])
         render json: collection
     end 
 
     def update
-        collection = Collection.find(params[:id])
+        collection = Collection.find(id: params[:id])
         collection.update(collection_params)
         render json: collection
     end 
 
     def destroy
-        collection = Collection.find(params[:id])
+        collection = Collection.find(id: params[:id])
         collection.destroy
         render json: collection
-    end 
+    end
 
-    private 
+    private
+
+    def has_session
+        session["init"] = true
+    end
+
     def collection_params
         params.permit(:user_id)
     end 

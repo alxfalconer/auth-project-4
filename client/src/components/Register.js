@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 
 const api = "http://localhost:3001/"
 
-export const Register = ({ setUser, setLoggedin }) => {
+export const Register = ({ setUser}) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
@@ -24,19 +24,21 @@ export const Register = ({ setUser, setLoggedin }) => {
             "Content-type": "application/json",
             Accepts: "application/json",
         },
+        // credentials: 'include',
         body: JSON.stringify({
             email,
             password,
             name
-        }),
+          
+        })
       }
     fetch(api + "register", newUser)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
         setUser(data)
-        setLoggedin(true)
-        history.push("/collection") 
+        // setLoggedin(true)
+        history.push("/login") 
       })
       .catch((err) => console.log(err))
   }

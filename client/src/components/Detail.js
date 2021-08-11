@@ -35,7 +35,6 @@ export function Detail({ match }) {
 }).then((result) => {
     result.json().then((res) => {
       console.log(res)
-      setDetail(data)
     })
   })
 }
