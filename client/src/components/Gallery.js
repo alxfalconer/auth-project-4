@@ -1,29 +1,49 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+const api = "http://localhost:3001/"
 
-export function Gallery({user}) {
+export function Gallery({user, userId}) {
 
   useEffect(() => {
-    fetchData();
+    fetchArtwork();
   },[]);
 
-  const [artworks, setData] = useState([]); 
+  const [artworks, setData] = useState([]);
+  const [collection, setCollection] = useState({})
 
-  const fetchData = async () => {
+  const fetchArtwork = async () => {
     const data = await fetch('https://api.artic.edu/api/v1/artworks?limit=50')
 
     const artworks = await data.json()
-    console.log(artworks.data);
+    // console.log(artworks.data);
     setData(artworks.data);
   }
   
+  const createCollection = (e) => {
+    e.preventDefault()
+    fetch(api + "collections", {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify( {
+            user_id: userId
+        })
+    }).then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+      setCollection(collection)
+      window.alert("Collection started!")
+      // history.push("/gallery") 
+    })
+  }
 
   return (
     
     <div>
-      <h1>Welcome back, {user.name}!</h1>
-      <h2>Our Artworks:</h2>
-      <h3 id="learnmore">Click the pieces you'd like to learn more about.</h3>
+      <h1>Welcome, {user.name}!</h1>
+      <h3>Peruse the gallery and click the artworks that pique your interest.</h3>
+
+      <button onClick={createCollection} className='poem-button'>Click to Create Collection</button>
+       
       {artworks.map(data => (
         <h2 className="artworks" key={data.id}><em>
           <Link to={`artworks/${data.id}`}>

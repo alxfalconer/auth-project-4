@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 
 const api = "http://localhost:3001/"
 
-export const Register = ({ setUser}) => {
+export const Register = ({ setUser }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
@@ -24,7 +24,6 @@ export const Register = ({ setUser}) => {
             "Content-type": "application/json",
             Accepts: "application/json",
         },
-        // credentials: 'include',
         body: JSON.stringify({
             email,
             password,
@@ -37,14 +36,14 @@ export const Register = ({ setUser}) => {
       .then((data) => {
         console.log(data)
         setUser(data)
-        // setLoggedin(true)
         history.push("/login") 
       })
       .catch((err) => console.log(err))
   }
   return (
     <div className='login-form'>
-      <h1>Become a Collector</h1>
+      <h1>Want to become a Collector?</h1>
+      <h2>Register below to access the gallery.</h2>
       <form onSubmit={handleRegister} className='poem-form'>
           <input
             placeholder='Enter email'

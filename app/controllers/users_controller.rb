@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
 
     def index
-        users = User.all
-        render json: users, include: ['collections', 'collections.artworks']
+        @users = User.all
+        render json: @users, include: ['collections', 'collections.artworks']
     end
 
     def show
-      user = User.find_by(id: session[:user_id])
-      if user
-        render json: user
+      @user = User.find_by(id: session[:user_id])
+      if @user
+        render json: @user
       else
         render json: { error: "Not authorized" }, status: :unauthorized
       end
@@ -16,13 +16,13 @@ class UsersController < ApplicationController
   
 
     def create
-        user = User.create!(user_params)
+        @user = User.create!(user_params)
     
-        if user
-          session[:user_id] = user.id
+        if @user
+          session[:user_id] = @user.id
           render json: {
             status: :created,
-            user: user
+            user: @user
           }
         else
           render json: { status: 500 }
@@ -32,29 +32,32 @@ class UsersController < ApplicationController
       end
 
     def me
-        user = User.find_by(id: session[:user_id])
-        if user
-          render json: user
+        @user = User.find_by(id: session[:user_id])
+        if @user
+          render json: @user
         else
           render json: { error: "Not authorized" }, status: :unauthorized
         end
     end
 
     def user_collections
-      user = User.find(params[:user_id])
-      collections = user.collections
-      render json: collections, include: :user
+      @user = User.find(params[:user_id])
+      @collections = @user.collections
+      render json: @collections, include: :user
   end
 
     # def user_artworks
-    #     user = User.find(params[:user_id])
-    #     artworks = user.artworks
-    #     render json: artworks, include: :user
+    #     @user = User.find(params[:user_id])
+    #     @artworks = @user.artworks
+    #     render json: @artworks, include: :user
     # end
 
     private
 
     def user_params
-        params.permit(:email, :password, :name, :collection)
+        params.require(:user).permit(:email, :password, :name, :collection)
+
+        # params.require(:user).permit(:email, :password, :name, 
+        # :collections_attributes => [:id, :user_id])
     end
 end

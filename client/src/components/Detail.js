@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
+// import { useHistory } from "react-router-dom"
 const api = "http://localhost:3001/"
 
-export function Detail({ match }) {
+export function Detail({ match, userId}) {
     useEffect(() => {
       fetchData();
   },[]);
 
+  // const history = useHistory()
   const [detail, setDetail] = useState({
-    data: {},
+    data: {}, userId
   });
 
   const fetchData = async () => {
@@ -18,15 +20,16 @@ export function Detail({ match }) {
       setDetail(detail);
   };
 
-  const artSubmit = (e) => {
-    e.preventDefault();
+  const artSubmit = ({userId}) => {
+    // e.preventDefault();
   const data = { 
     "title": detail.data.title,
     "artist_title": detail.data.artist_title,
     "place_of_origin": detail.data.place_of_origin,
     "date_display": detail.data.date_display,
     "medium_display": detail.data.medium_display,
-    "image_id": detail.data.image_id
+    "image_id": detail.data.image_id,
+    "user_id": userId
     };
   fetch(api + "artworks", {
       method: 'POST',
@@ -35,6 +38,8 @@ export function Detail({ match }) {
 }).then((result) => {
     result.json().then((res) => {
       console.log(res)
+      // window.alert("Added!")
+      // history.push("/gallery") 
     })
   })
 }
@@ -52,7 +57,7 @@ export function Detail({ match }) {
         <br></br>
         <br></br>
         <br></br>
-        <button onClick={artSubmit} className="poem-button">Add to Collection</button>
+        <button onClick={artSubmit} className="poem-button">Add to Collection?</button>
         <br></br>
         <br></br>
         <br></br>

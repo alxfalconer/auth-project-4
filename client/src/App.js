@@ -64,10 +64,11 @@ function App() {
                   {loggedIn ? (<Collection user={user} userId={user.id}/> )
                         : (<Login setUser={setUser} setLoggedIn={setLoggedin} />)}
                 </Route>
-                <Route exact path="/artworks/:id" component={Detail}/>
+                <Route exact path="/artworks/:id" component={Detail} userId={user.id}/>
+                
                 <Route exact path="/gallery">
-                  {loggedIn ? (<Gallery user={user}/>)
-                  : (<Register/>)}
+                  {loggedIn ? (<Gallery user={user} userId={user.id}/>)
+                  : (<Register setUser={setUser}/>)}
                   </Route>
               <Footer />
           </div>

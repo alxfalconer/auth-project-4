@@ -26,6 +26,7 @@ module AuthProject4
     config.middleware.use ActionDispatch::Session::CookieStore
     config.action_controller.default_protect_from_forgery = true
     config.action_dispatch.cookies_same_site_protection = :strict
+    config.x.cors_allowed_origins = ENV['CORS_ALLOWED_ORIGINS']
     config.load_defaults 6.1
 
     # Configuration for the application, engines, and railties goes here.
@@ -39,6 +40,6 @@ module AuthProject4
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
-    config.api_only = false
+    config.api_only = true
   end
 end

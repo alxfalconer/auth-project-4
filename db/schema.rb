@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
   create_table "artworks", force: :cascade do |t|
     t.string "title"
     t.integer "user_id"
-    t.integer "collection_id"
     t.string "artist_title"
     t.string "place_of_origin"
     t.string "date_display"
@@ -29,8 +28,8 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
   end
 
   create_table "collections", force: :cascade do |t|
-    t.integer "user_id", null: false
-    # t.references "user"
+    t.integer "user_id"
+    t.string "collection_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
