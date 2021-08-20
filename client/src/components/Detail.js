@@ -8,6 +8,7 @@ export function Detail({ match, userId}) {
   },[]);
 
   // const history = useHistory()
+ 
   const [detail, setDetail] = useState({
     data: {}, userId
   });
@@ -20,7 +21,14 @@ export function Detail({ match, userId}) {
       setDetail(detail);
   };
 
+  const [collection, setCollection] = useState({});
+
   const artSubmit = ({userId}) => {
+    fetch(api + "collections")
+    .then((res) => res.json())
+    .then((res) => setCollection(res))
+    .catch((err) => console.log("error = ", err));
+
     // e.preventDefault();
   const data = { 
     "title": detail.data.title,
@@ -29,7 +37,8 @@ export function Detail({ match, userId}) {
     "date_display": detail.data.date_display,
     "medium_display": detail.data.medium_display,
     "image_id": detail.data.image_id,
-    "user_id": userId
+    "user_id": userId,
+    "collection_id": collection.id
     };
   fetch(api + "artworks", {
       method: 'POST',
@@ -38,7 +47,7 @@ export function Detail({ match, userId}) {
 }).then((result) => {
     result.json().then((res) => {
       console.log(res)
-      // window.alert("Added!")
+      window.alert("Added!")
       // history.push("/gallery") 
     })
   })

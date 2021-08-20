@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_07_29_021953) do
     t.string "title"
     t.integer "user_id"
     t.string "artist_title"
+    t.integer "collection_id"
     t.string "place_of_origin"
     t.string "date_display"
     t.string "medium_display"

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useHistory, Link } from "react-router-dom"
+import agentsmith from "./agentsmith.gif"
 const api = "http://localhost:3001/"
 
 export const Login = ({ setUser, setLoggedIn }) => {
@@ -25,7 +26,11 @@ export const Login = ({ setUser, setLoggedIn }) => {
         password,
       }),
     }
-    fetch(api + "login", loginObj)
+    fetch(api + "login", loginObj,
+    {
+      credentials: 'include'  
+    }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
@@ -36,7 +41,7 @@ export const Login = ({ setUser, setLoggedIn }) => {
           history.push("/gallery")
         } 
         else 
-        window.alert("Stranger danger! We don't recognize that email and/or password. Please try again or click the button below to register.")
+        window.alert("Stranger danger! We don't recognize that email and/or password. Please try again or click below to register.")
         setEmail("")
         setPassword("")
       })
@@ -46,6 +51,7 @@ export const Login = ({ setUser, setLoggedIn }) => {
   return (
     <div className='login-form'>
       <h1>So we meet again...</h1>
+      <h3><img className="agentsmith" src={agentsmith} alt="agentsmith"/></h3>
       <h2>Enter your email and password to enter.</h2>
           <form onSubmit={handleSubmit} className='poem-form'>
           <input

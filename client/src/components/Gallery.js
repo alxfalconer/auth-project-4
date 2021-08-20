@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 const api = "http://localhost:3001/"
 
-export function Gallery({user, userId}) {
+export function Gallery({user, userId, setLoggedIn}) {
 
   useEffect(() => {
     fetchArtwork();
@@ -21,7 +21,8 @@ export function Gallery({user, userId}) {
   
   const createCollection = (e) => {
     e.preventDefault()
-    fetch(api + "collections", {
+    fetch(api + "collections",
+   {
         method: 'POST',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify( {
@@ -30,8 +31,9 @@ export function Gallery({user, userId}) {
     }).then((res) => res.json())
     .then((data) => {
       console.log(data)
+      setLoggedIn(true)
       setCollection(collection)
-      window.alert("Collection started!")
+      window.alert("Collection created!")
       // history.push("/gallery") 
     })
   }

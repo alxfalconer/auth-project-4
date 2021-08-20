@@ -24,8 +24,9 @@ module AuthProject4
     # Initialize configuration defaults for originally generated Rails version.
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
-    config.action_controller.default_protect_from_forgery = true
-    config.action_dispatch.cookies_same_site_protection = :strict
+    # config.action_controller.default_protect_from_forgery = true
+    # config.action_controller.allow_forgery_protection = false
+    # config.action_dispatch.cookies_same_site_protection = :strict
     config.x.cors_allowed_origins = ENV['CORS_ALLOWED_ORIGINS']
     config.load_defaults 6.1
 

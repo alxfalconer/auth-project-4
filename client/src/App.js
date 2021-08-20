@@ -20,7 +20,11 @@ function App() {
   }, [])
 
   const currentUser = () => {    
-    fetch(api + "me")
+    fetch(api + "me", 
+    {
+      credentials: 'include'  
+    }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("current user: ", data)
@@ -61,13 +65,13 @@ function App() {
                   <Register setUser={setUser} setLoggedin={setLoggedin} />  
                 </Route>
                 <Route exact path ="/collection"> 
-                  {loggedIn ? (<Collection user={user} userId={user.id}/> )
+                  {loggedIn ? (<Collection user={user} userId={user.id} setUser={setUser} setLoggedIn={setLoggedin}/> )
                         : (<Login setUser={setUser} setLoggedIn={setLoggedin} />)}
                 </Route>
-                <Route exact path="/artworks/:id" component={Detail} userId={user.id}/>
+                <Route exact path="/artworks/:id" component={Detail} userId={user.id} setUser={setUser} setLoggedIn={setLoggedin}/>
                 
                 <Route exact path="/gallery">
-                  {loggedIn ? (<Gallery user={user} userId={user.id}/>)
+                  {loggedIn ? (<Gallery user={user} userId={user.id} setUser={setUser} setLoggedIn={setLoggedin}/>)
                   : (<Register setUser={setUser}/>)}
                   </Route>
               <Footer />

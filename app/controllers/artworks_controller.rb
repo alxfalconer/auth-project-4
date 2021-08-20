@@ -12,11 +12,6 @@ class ArtworksController < ApplicationController
 
     def create
         @artwork = Artwork.create!(artwork_params)
-        # p session
-        # p "*****"
-        # @user = User.find_by(id: session[:user_id])
-        # @artwork = @user.artworks.new(artworks_params)
-    
         if @artwork
           session[:artwork_id] = @artwork.id
           render json: {
@@ -28,8 +23,34 @@ class ArtworksController < ApplicationController
         end
       end
 
+    # def create
+    #   @user = User.find_by(id: session[:user_id])
+    #   p session
+    #   p session[:user_id]
+    #   p "*****"
+    #   @artwork = @user.artworks.new(artwork_params)
+    #   if @artwork.save
+    #       render json: @artwork, status: :created
+    #   else
+    #       render json: { error: "Not Created" }, status: :bad_request
+    #   end
+    # end
+
+    # def create
+    #   @collection = Collection.find_by(id: session[:collection_id])
+    #   p session
+    #   p session[:collection_id]
+    #   p "*****"
+    #   @artwork = @collection.artworks.new(artwork_params)
+    #   if @artwork.save
+    #       render json: @artwork, status: :created
+    #   else
+    #       render json: { error: "Not Created" }, status: :bad_request
+    #   end
+    # end
+    
+
     def update
-      # @artwork = Artwork.find_by(id: params[:id])
         if @artwork.update(artwork_params)
           render json: @artwork
         else
@@ -39,27 +60,12 @@ class ArtworksController < ApplicationController
 
     def destroy
       artwork= Artwork.where(id: params[:id]).first
-        # @artwork= Artwork.find_by(id: params[:id])
-        # @artwork.delete
-        # render json: @artwork
         if artwork.destroy
             head(:ok)
         else
             head(:unprocessable_entity)
         end
     end
-
-    # def new
-    #     @user = User.find_by(id: session[:user_id])
-    #     @artwork = @user.artworks.new(artworks_params)
-    #     p session
-    #     p "*****"
-    #     if @artwork.save
-    #         render json: @artwork, status: :created
-    #     else
-    #         render json: { error: "Not Created" }, status: :bad_request
-    #     end 
-    # end
 
     private 
 

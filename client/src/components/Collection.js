@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 const api = "http://localhost:3001/"
 
-export const Collection = ({user, userId}) => {
+export const Collection = ({user, userId, setLoggedIn}) => {
     const [collection, setCollection] = useState({})
     const history = useHistory()
 
     useEffect(() => fetchCollections(), []);
 
     const fetchCollections = () => {
-      fetch("users/" + user.id + "/collections")
+      fetch("users/" + user.id + "/collections",
+
+      )
         .then((res) => res.json())
         .then((res) => setCollection(res))
         .catch((err) => console.log("error = ", err));
@@ -35,10 +37,12 @@ export const Collection = ({user, userId}) => {
         const delObj = {
           method: "DELETE",
         };
-        fetch(api + "collections/" + collectionID, delObj)
+        fetch(api + "collections/" + collectionID, delObj
+        )
           .then((res) => res.json())
           .then((res) => {
             console.log(res);
+            setLoggedIn(true)
             // window.location.reload();
           })
           .catch((err) => console.log("delete err = ", err));

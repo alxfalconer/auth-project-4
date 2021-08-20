@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # before_action :authorize, only: :me
 
     def index
         @users = User.all
@@ -32,7 +33,10 @@ class UsersController < ApplicationController
       end
 
     def me
+      # render json: @current_user
+      p session
         @user = User.find_by(id: session[:user_id])
+        p session[:user_id]
         if @user
           render json: @user
         else
@@ -57,7 +61,5 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:email, :password, :name, :collection)
 
-        # params.require(:user).permit(:email, :password, :name, 
-        # :collections_attributes => [:id, :user_id])
     end
 end

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
+import sunnycollector from "./sunnycollector.gif"
 
 const api = "http://localhost:3001/"
 
@@ -31,7 +32,11 @@ export const Register = ({ setUser }) => {
           
         })
       }
-    fetch(api + "register", newUser)
+    fetch(api + "register", newUser,
+    {
+      credentials: 'include'  
+    }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
@@ -43,6 +48,7 @@ export const Register = ({ setUser }) => {
   return (
     <div className='login-form'>
       <h1>Want to become a Collector?</h1>
+      <h3><img className="sunnycollector" src={sunnycollector} alt="sunnycollector"/></h3>
       <h2>Register below to access the gallery.</h2>
       <form onSubmit={handleRegister} className='poem-form'>
           <input

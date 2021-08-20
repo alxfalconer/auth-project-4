@@ -3,19 +3,20 @@ class CollectionsController < ApplicationController
 
     def index
         @collections = Collection.all
-        render json: @collections
+        render json: @collections, include: ['artworks']
     end
 
     def create
-        @collection = Collection.create(collection_params)
-        render json: @collection
-
-        # @user = User.find_by(id: session[:user_id])
-        # p session
-        # p session[:user_id]
-        # p "*****"
-        # @collection = @user.collections.create(collection_params)
+        # @collection = Collection.create(collection_params)
         # render json: @collection
+
+        @user = User.find_by(session[:user_id])
+        p session
+        p session[:user_id]
+        p "*****"
+        @collection = @user.collections.create(collection_params)
+        render json: @collection
+        p session[:user_id]
     end
 
     def new
@@ -58,14 +59,6 @@ class CollectionsController < ApplicationController
 
     def collection_params
         params.require(:collection).permit(:user_id, :collection_name)
-
-        # params.require(:collection).permit(:email, :password, :name, 
-        # :artworks_attributes => [:user_id, :title, :artist_title, :place_of_origin, :date_display, :medium_display, :image_id])
     end
-
-    # def artwork_params
-    #     params.permit(:user_id, :title, :artist_title, :place_of_origin, :date_display, :medium_display, :image_id)
-
-    # end
 
 end

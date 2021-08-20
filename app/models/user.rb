@@ -4,7 +4,8 @@ class User < ApplicationRecord
     validates_uniqueness_of :email
     # has_many :artworks
     has_many :collections
-    has_many :artworks, through: :collections
+    has_many :artworks
+    # , through: :collections
     # accepts_nested_attributes_for :collection
     # has_many :artworks, through: :collections
     # has_many :collection_items
