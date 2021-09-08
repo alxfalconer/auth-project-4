@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import sunnycollector from "./sunnycollector.gif"
 
-// const api = "http://localhost:3001/"
+const api = "http://localhost:3001/"
 
 export const Register = ({ setUser }) => {
   const [email, setEmail] = useState("")
@@ -32,7 +32,7 @@ export const Register = ({ setUser }) => {
           
         })
       }
-    fetch("/register", newUser,
+    fetch(api + "register", newUser,
     {
       credentials: 'include'  
     }
