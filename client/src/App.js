@@ -9,7 +9,7 @@ import { Footer } from './components/Footer'
 import { Nav } from './components/Nav'
 import React, { useState, useEffect } from 'react'
 import './App.css'
-const api = "http://localhost:3001/"
+// const api = "http://localhost:3001/"
 
 function App() {
   const [user, setUser] = useState({})
@@ -20,7 +20,7 @@ function App() {
   }, [])
 
   const currentUser = () => {    
-    fetch(api + "me"
+    fetch("/me"
 
     )
       .then((res) => res.json())
@@ -39,7 +39,7 @@ function App() {
      const delObj = {
        method: "DELETE"
       };
-      fetch(api + "logout", delObj)
+      fetch("/logout", delObj)
       .then((res) => res.json())
       .then((res) => {
         setLoggedin(false)

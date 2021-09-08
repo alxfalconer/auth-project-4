@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   post "/register", to: "users#create"
   root to: "static#home"
 
-  # get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
+  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

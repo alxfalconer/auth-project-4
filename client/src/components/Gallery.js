@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-const api = "http://localhost:3001/"
+// const api = "http://localhost:3001/"
 
 export function Gallery({user, userId, setLoggedIn}) {
 
@@ -21,7 +21,7 @@ export function Gallery({user, userId, setLoggedIn}) {
   
   const createCollection = (e) => {
     e.preventDefault()
-    fetch(api + "collections",
+    fetch("/collections",
    {
         method: 'POST',
         headers: {"Content-Type": "application/json"},

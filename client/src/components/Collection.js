@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
-const api = "http://localhost:3001/"
+// const api = "http://localhost:3001/"
 
 export const Collection = ({user, userId, setLoggedIn}) => {
     const [collection, setCollection] = useState({})
@@ -9,7 +9,7 @@ export const Collection = ({user, userId, setLoggedIn}) => {
     useEffect(() => fetchCollections(), []);
 
     const fetchCollections = () => {
-      fetch("users/" + user.id + "/collections",
+      fetch("/users/" + user.id + "/collections",
 
       )
         .then((res) => res.json())
@@ -37,7 +37,7 @@ export const Collection = ({user, userId, setLoggedIn}) => {
         const delObj = {
           method: "DELETE",
         };
-        fetch(api + "collections/" + collectionID, delObj
+        fetch("/collections/" + collectionID, delObj
         )
           .then((res) => res.json())
           .then((res) => {

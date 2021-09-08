@@ -26,7 +26,7 @@ export const Login = ({ setUser, setLoggedIn }) => {
         password,
       }),
     }
-    fetch(api + "login", loginObj,
+    fetch("/login", loginObj,
     {
       credentials: 'include'  
     }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import { useHistory } from "react-router-dom"
-const api = "http://localhost:3001/"
+// const api = "http://localhost:3001/"
 
 export function Detail({ match, userId}) {
     useEffect(() => {
@@ -24,7 +24,7 @@ export function Detail({ match, userId}) {
   const [collection, setCollection] = useState({});
 
   const artSubmit = ({userId}) => {
-    fetch(api + "collections")
+    fetch("/collections")
     .then((res) => res.json())
     .then((res) => setCollection(res))
     .catch((err) => console.log("error = ", err));
@@ -40,7 +40,7 @@ export function Detail({ match, userId}) {
     "user_id": userId,
     "collection_id": collection.id
     };
-  fetch(api + "artworks", {
+  fetch("/artworks", {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(data)
