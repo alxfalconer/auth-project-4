@@ -20,10 +20,8 @@ function App() {
   }, [])
 
   const currentUser = () => {    
-    fetch(api + "me", 
-    {
-      credentials: 'include'  
-    }
+    fetch(api + "me"
+
     )
       .then((res) => res.json())
       .then((data) => {
