@@ -36,10 +36,10 @@ function App() {
 
    const handleLogout = (e) => {
     e.preventDefault();
-     const delObj = {
+     const logoutUser = {
        method: "DELETE"
       };
-      fetch(api + "logout", delObj)
+      fetch(api + "logout", logoutUser)
       .then((res) => res.json())
       .then((res) => {
         setLoggedin(false)

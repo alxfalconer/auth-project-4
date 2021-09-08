@@ -15,7 +15,6 @@ export function Gallery({user, userId, setLoggedIn}) {
     const data = await fetch('https://api.artic.edu/api/v1/artworks?limit=50')
 
     const artworks = await data.json()
-    // console.log(artworks.data);
     setData(artworks.data);
   }
   
@@ -34,7 +33,6 @@ export function Gallery({user, userId, setLoggedIn}) {
       setLoggedIn(true)
       setCollection(collection)
       window.alert("Collection created!")
-      // history.push("/gallery") 
     })
   }
 

@@ -6,7 +6,6 @@ const api = "http://localhost:3001/"
 export const Login = ({ setUser, setLoggedIn }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  // const [collection, setCollection] = useState({})
   const history = useHistory()
 
   const handleChange = (e) => {
@@ -16,7 +15,7 @@ export const Login = ({ setUser, setLoggedIn }) => {
   
   const handleSubmit = (e) => {
     e.preventDefault()
-    const loginObj = {
+    const loginUser = {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -26,10 +25,7 @@ export const Login = ({ setUser, setLoggedIn }) => {
         password,
       }),
     }
-    fetch(api + "login", loginObj,
-    {
-      credentials: 'include'  
-    }
+    fetch(api + "login", loginUser
     )
       .then((res) => res.json())
       .then((data) => {
@@ -37,7 +33,6 @@ export const Login = ({ setUser, setLoggedIn }) => {
         if (!!data.id) {
           setUser(data)
           setLoggedIn(true)
-          // setCollection(collection)
           history.push("/gallery")
         } 
         else 
@@ -45,7 +40,6 @@ export const Login = ({ setUser, setLoggedIn }) => {
         setEmail("")
         setPassword("")
       })
-      // .catch((err) => console.log(err))
   }
 
   return (

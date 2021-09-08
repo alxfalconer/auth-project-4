@@ -13,8 +13,7 @@ export const Nav = ({ loggedIn, handleLogout}) => {
             {loggedIn ? 
               <>
                 <Link style={{color: "white"}} onClick={handleLogout}>Logout</Link> 
-                {/* <Link eventKey={2} to="/collection">
-                  <li>Collection</li></Link>  */}
+  
                 </>: 
               <>
                 <Link style={{color: "white"}} to="/login">

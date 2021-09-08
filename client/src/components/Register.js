@@ -19,7 +19,7 @@ export const Register = ({ setUser }) => {
   const handleRegister = (e) => {
     e.preventDefault()
 
-    const newUser = {
+    const createUser = {
       method: "POST",
       headers: {
             "Content-type": "application/json",
@@ -32,10 +32,7 @@ export const Register = ({ setUser }) => {
           
         })
       }
-    fetch(api + "register", newUser,
-    {
-      credentials: 'include'  
-    }
+    fetch(api + "register", createUser
     )
       .then((res) => res.json())
       .then((data) => {

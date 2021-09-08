@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { useHistory } from "react-router-dom"
 const api = "http://localhost:3001/"
 
 export function Detail({ match, userId}) {
@@ -7,7 +6,6 @@ export function Detail({ match, userId}) {
       fetchData();
   },[]);
 
-  // const history = useHistory()
  
   const [detail, setDetail] = useState({
     data: {}, userId
@@ -29,7 +27,6 @@ export function Detail({ match, userId}) {
     .then((res) => setCollection(res))
     .catch((err) => console.log("error = ", err));
 
-    // e.preventDefault();
   const data = { 
     "title": detail.data.title,
     "artist_title": detail.data.artist_title,
@@ -48,7 +45,6 @@ export function Detail({ match, userId}) {
     result.json().then((res) => {
       console.log(res)
       window.alert("Added!")
-      // history.push("/gallery") 
     })
   })
 }
