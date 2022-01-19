@@ -6,9 +6,22 @@ class ArtworksController < ApplicationController
     end
 
     def show
-        @artwork = Artwork.find_by(id: params[:id])
-        render json: @artwork
+      artworks = Artwork.where(place_of_origin: "United States").all
+      render json: artworks
+      
     end
+
+    # def show
+    #   @artwork = Artwork.find_by(id: params[:id])
+    #   render json: @artwork
+      
+    # end
+
+    # def states
+    #   artworks = Artwork.where(place_of_origin: "United States").all
+    #   render json: artworks
+    # end
+
 
     def create
         @artwork = Artwork.create!(artwork_params)
@@ -35,21 +48,7 @@ class ArtworksController < ApplicationController
     #       render json: { error: "Not Created" }, status: :bad_request
     #   end
     # end
-
-    # def create
-    #   @collection = Collection.find_by(id: session[:collection_id])
-    #   p session
-    #   p session[:collection_id]
-    #   p "*****"
-    #   @artwork = @collection.artworks.new(artwork_params)
-    #   if @artwork.save
-    #       render json: @artwork, status: :created
-    #   else
-    #       render json: { error: "Not Created" }, status: :bad_request
-    #   end
-    # end
     
-
     def update
         if @artwork.update(artwork_params)
           render json: @artwork

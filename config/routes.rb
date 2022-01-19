@@ -2,12 +2,11 @@ Rails.application.routes.draw do
   resources :users
   resources :artworks
   resources :collections
-  get '/users/:user_id/collections', to: 'users#user_collections'
+  get '/users/:id', to: 'users#show' 
+  get '/artworks/states', to: 'artworks#show'
   get "/me", to: "sessions#show"
-  # post "/me", to: "users#me"
   post '/login', to: 'sessions#login'
   delete '/logout', to: 'sessions#destroy'
-  # get '/logged_in', to: 'sessions#logged_in'
   post "/register", to: "users#create"
   root to: "static#home"
 

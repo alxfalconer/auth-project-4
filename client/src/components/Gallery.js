@@ -16,6 +16,7 @@ export function Gallery({user, userId, setLoggedIn}) {
 
     const artworks = await data.json()
     setData(artworks.data);
+    console.log(artworks)
   }
   
   const createCollection = (e) => {
@@ -36,16 +37,35 @@ export function Gallery({user, userId, setLoggedIn}) {
     })
   }
 
+
+
+  const placeOfOrigin = (e) => {
+    e.preventDefault()
+    fetch(api + "artworks/states")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data)
+      setData(data)
+      
+      
+    })
+  }
+
   return (
     
     <div>
       <h1>Welcome, {user.name}!</h1>
       <h3>Peruse the gallery and click the artworks that pique your interest.</h3>
 
+      <button onClick={placeOfOrigin}>U.S. Only?</button>
+      <button onClick={fetchArtwork}>Remove</button>
+      <br></br>
+
       <button onClick={createCollection} className='poem-button'>Click to Create Collection</button>
        
       {artworks.map(data => (
-        <h2 className="artworks" key={data.id}><em>
+        <h2 className="artworks" key={data.id}>
+          <em>
           <Link to={`artworks/${data.id}`}>
           <img className="small" id="image" src={`https://www.artic.edu/iiif/2/${data.image_id}/full/843,/0/default.jpg`} alt=""/>
           </Link>

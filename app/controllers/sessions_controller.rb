@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         render json: @user, status: :accepted
         p "****"
+        p session
         p session[:user_id]
         else
             render json: { error: "Incorrect email and/or password"}, status: :unauthorized
